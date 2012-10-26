@@ -22,7 +22,6 @@ function parse_hexes() {
 }
 
 function display_hexes(hexes) {
-  console.log(hexes);
   for (var i=0; i< hexes.length ; i++) {
     //create the containing div
     var divId = "wrapper_" + (hexes[i].substring(1));
@@ -49,15 +48,13 @@ function process_text() {
   $("#palette").html('');
   hexes = parse_hexes();
   display_hexes(hexes);
-  $("#palette").show();
-  // document.body.style.background = "#ffffff";
+
+  $("#main").addClass('clear');
 }
 
-// // $(document).ready(function() {
-//   $("#submit-btn").live("click", function() {
-//     // alert("recognize click");
-//     console.log("clicked");
-//   })
-// // })
-
-// (#[A-Fa-f0-9]{6}|#[A-Fa-f0-9]{3})
+function clear_everything() {
+  // $.location.reload(true);
+  $("#palette").html('');
+  $("#main").removeClass('clear');
+  $("textarea").val('');
+}
