@@ -14,14 +14,19 @@
    return newArr;
 }
 
+function camelCase(input) { 
+    return input.toLowerCase().replace(/\s(.)/g, function(match, group1) {
+        return group1.toUpperCase();
+    });
+}
 
-function parse_hexes(text) {
-  
+
+function parseHexes(text) { 
   var all_hexes = text.match(/(#[A-Fa-f0-9]{6}|#[A-Fa-f0-9]{3})/g);
   return unique(all_hexes);
 }
 
-function display_hexes(hexes) {
+function displayHexes(hexes) {
   for (var i=0; i< hexes.length ; i++) {
     //create the containing div
     var divId = "wrapper_" + (hexes[i].substring(1));
@@ -45,18 +50,33 @@ function display_hexes(hexes) {
   }
 }
 
-function hexes_as_text(hexs) {
+function hexesAsNamelessText(hexs) {
   var list = "<ul id='simple-css'>"
   for (var i=0; i< hexes.length ; i++) {
-    var name = ".color" + i;
-    var str = '<li>' + name + " { color: " + hexes[i] + " } </li>";
+    var index_name = ".color" + i;
+    var name = ntc.name(hexes[i])[1];
+    var str = '<li>' + index_name + " { color: " + hexes[i] + " }   /* " + name + " */ </li>";
+    list = list + str;
+  }
+  list = list + "</ul>"
+  
+  $("#textPalette").append("<br /><h5>...or, use the same hex codes with more generic names</h5>");  
+  $("#textPalette").append(list);
+
+}
+
+function hexesAsText(hexs) {
+  var list = "<ul id='named-css'>"
+  for (var i=0; i< hexes.length ; i++) {
+    var name = camelCase(ntc.name(hexes[i])[1]);
+    var str = '<li> .' + name + " { color: " + hexes[i] + " } </li>";
     list = list + str;
   }
   list = list + "</ul>"
   
   $("#textPalette").html('');
   $("#textPalette").append('<button id="toggler" class="btn btn-primary" onclick="togglePalette()">View with color swatches</button>');
-  $("#textPalette").append("<p><strong>Now, you can copy and paste the hex codes into your stylesheet</strong></p>");  
+  $("#textPalette").append("<h5>Now, you can copy and paste the CSS below into your stylesheet...</h5>");  
   $("#textPalette").append(list);
 
 }
@@ -66,9 +86,11 @@ function process_text() {
   // clear_everything();
   $("#palette").html('');
   $("#palette").append('<button id="toggler" class="btn btn-primary" onclick="togglePalette()">View as simple CSS</button>');
-  hexes = parse_hexes(text);
-  display_hexes(hexes);
-  hexes_as_text(hexes);
+  hexes = parseHexes(text);
+  displayHexes(hexes);
+  hexesAsText(hexes);
+  hexesAsNamelessText(hexes);
+ 
   $("#palette").show();
   $("#main").addClass('clear');
 }
