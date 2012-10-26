@@ -1,0 +1,23 @@
+.container
+  .row
+    .span11
+      %h1
+        fog of hex
+        .lead
+          (see through the fog of hex to find the rainbow within)
+      %p
+        To use, simply copy and paste (or type) anything in the text box at left. Press "Disperse Fog". At right, you'll see all the hex codes used in the text, with a properly-colored swatch of each. 
+  %hr
+  .row
+    .span5
+      .row
+        %h4="Enter text, code, css etc. here"
+        %textarea{:rows => "20", :cols => "90", :id=>"code_sample"}
+          <h3 style="color: #75715e">Example (click "Disperse Fog" below)</h3>
+        %button{:class => "btn btn-success", :id =>"submit-btn", :onclick => "process_text()",}
+          Disperse Fog
+    .span5.offset1
+      #palette
+        = image_tag('qmark.png', :size=>"254x380", :id=>'qmark')
+
+

@@ -1,0 +1,23 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background-image: url('clouds.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+canvas {
+  float: left;
+}
+
+#code_sample {
+  width: 100%;
+}
+
+
+#palette {
+  padding-top: 40px;
+}
