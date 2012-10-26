@@ -15,9 +15,9 @@
 }
 
 
-function parse_hexes() {
-  var all_text = $("#code_sample").val();
-  var all_hexes = all_text.match(/(#[A-Fa-f0-9]{6}|#[A-Fa-f0-9]{3})/g);
+function parse_hexes(text) {
+  
+  var all_hexes = text.match(/(#[A-Fa-f0-9]{6}|#[A-Fa-f0-9]{3})/g);
   return unique(all_hexes);
 }
 
@@ -41,6 +41,7 @@ function display_hexes(hexes) {
 
     //create the label
     $("#" + divId).append('<h3>' + hexes[i] + "</h3>");
+    console.log($("#palette"));
   }
 }
 
@@ -61,16 +62,21 @@ function hexes_as_text(hexs) {
 }
 
 function process_text() {
+  var text = $("#code_sample").val();
+  // clear_everything();
   $("#palette").html('');
   $("#palette").append('<button id="toggler" class="btn btn-primary" onclick="togglePalette()">View as simple CSS</button>');
-  hexes = parse_hexes();
+  hexes = parse_hexes(text);
   display_hexes(hexes);
+  hexes_as_text(hexes);
+  $("#palette").show();
   $("#main").addClass('clear');
 }
 
 function clear_everything() {
   // $.location.reload(true);
   $("#palette").html('');
+  $("#textPalette").html('');
   $("#main").removeClass('clear');
   $("textarea").val('');
 }
@@ -78,12 +84,9 @@ function clear_everything() {
 function togglePalette() {
   if ($("#palette").is(":visible")) {
     $("#palette").hide();
-    $("#textPalette").html('');
-    hexes_as_text();
     $("#textPalette").show();
   } else if ($("#textPalette").is(":visible")) {
     $("#textPalette").hide();
-    process_text()
     $("#palette").show();
  }
 }
