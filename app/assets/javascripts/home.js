@@ -36,7 +36,7 @@ function displayHexes(hexes) {
     $("#palette").append(newDiv);
 
     //create canvas
-    var newCanvas = document.createElement('canvas')
+    var newCanvas = document.createElement('canvas');
     newCanvas.setAttribute('width', 60);
     newCanvas.setAttribute('height', 50);
     var ctx = newCanvas.getContext('2d');
@@ -45,7 +45,8 @@ function displayHexes(hexes) {
     $("#" + divId).append(newCanvas);
 
     //create the label
-    $("#" + divId).append('<h3>' + hexes[i] + "</h3>");
+    var name = ntc.name(hexes[i])[1];
+    $("#" + divId).append('<span class="hexCode">' + hexes[i] + '</span><span class="hexName"> (' +  name + ")</span>");
     console.log($("#palette"));
   }
 }
