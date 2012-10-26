@@ -5,24 +5,24 @@
         %h1
           fog of hex
           .lead
-            (see through the fog of hex to find the rainbow within)
+            (find all hex codes in a block of text, and visualize their corresponding colors)
         %p
-          To use, simply copy and paste (or type) anything in the text box at left. Press "Clear the Fog". At right, you'll see all the hex codes used in the text, with a properly-colored swatch of each. 
+          To use, simply copy and paste (or type) anything in the text box at left. Press "Parse Color". At right, you'll see all the hex codes used in the text, with a properly-colored swatch of each. 
     %hr
     .row
       .span5
         %h4="Enter text, code, css etc. here"
         %textarea{:rows => "20", :cols => "90", :id=>"code_sample"}
-          <h3 style="color: #75715e">Example (click "Disperse Fog" below)</h3>
+          <h3 style="color: #75715e">Example (click "Parse Color" below)</h3>
         %button{:class => "btn btn-success", :id =>"submit-btn", :onclick => "process_text()"}
-          Clear the Fog
+          Parse Color
         %button{:class => "btn btn-primary", :id => "clear-btn", :onclick => "clear_everything()"}
-          Start from scratch
+          Clear All
       .span5.offset1
         #palette.foggy
           / # = image_tag('qmark.png', :size=>"254x380", :id=>'qmark')
   %hr
   .row#footer
-    Made by @bobbins
+    Made by @bobbins. October 2012.
 
 
