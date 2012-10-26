@@ -1,0 +1,24 @@
+.container
+  .row
+    .span11
+      %h1
+        color psychic
+        .lead
+          (see through the fog of hex to find the rainbow within)
+      %p
+        To use, simply copy and paste (or type) a hexcode in the text box at left. Press "Disperse Fog". The cloud at right will show all the colors, and their hexcodes. Great if you're trying to deal with a large css file with unlabeled hex colors.
+  %hr
+  .row
+    .span5
+      .row
+        %h4="Enter text, code, css etc. here"
+        %textarea{:rows => "20", :cols => "90", :id=>"code_sample"}
+        %button{:class => "btn btn-success", :id =>"submit-btn", :onclick => "process_text()"}
+          Disperse Fog
+    .span5.offset1
+      %h4="Fog"
+      #palette{:style => "display: none;"}
+        ?
+
+:erb
+
