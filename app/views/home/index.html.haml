@@ -16,10 +16,11 @@
           <h3 style="color: #75715e">Example (click "Parse Color" below)</h3>
         %button{:class => "btn btn-success", :id =>"submit-btn", :onclick => "process_text()"}
           Parse Color
-        %button{:class => "btn btn-primary", :id => "clear-btn", :onclick => "clear_everything()"}
+        %button{:class => "btn btn-danger", :id => "clear-btn", :onclick => "clear_everything()"}
           Clear All
       .span5.offset1
-        #palette.foggy
+        #palette
+        #textPalette{:style => "display: none;"}
           
   %hr
   .row#footer

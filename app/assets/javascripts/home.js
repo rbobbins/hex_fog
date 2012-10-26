@@ -45,25 +45,26 @@ function display_hexes(hexes) {
 }
 
 function hexes_as_text(hexs) {
-  var list = "<ul>"
+  var list = "<ul id='simple-css'>"
   for (var i=0; i< hexes.length ; i++) {
     var name = ".color" + i;
     var str = '<li>' + name + " { color: " + hexes[i] + " } </li>";
     list = list + str;
   }
   list = list + "</ul>"
-    
-  $("#palette").append("<br /><br /><p><strong>Now, you can copy and paste the hex codes into your stylesheet</strong></p>");  
-  $("#palette").append(list);  
+  
+  $("#textPalette").html('');
+  $("#textPalette").append('<button id="toggler" class="btn btn-primary" onclick="togglePalette()">View with color swatches</button>');
+  $("#textPalette").append("<p><strong>Now, you can copy and paste the hex codes into your stylesheet</strong></p>");  
+  $("#textPalette").append(list);
 
 }
 
 function process_text() {
   $("#palette").html('');
+  $("#palette").append('<button id="toggler" class="btn btn-primary" onclick="togglePalette()">View as simple CSS</button>');
   hexes = parse_hexes();
   display_hexes(hexes);
-  hexes_as_text(hexes);
-
   $("#main").addClass('clear');
 }
 
@@ -72,4 +73,17 @@ function clear_everything() {
   $("#palette").html('');
   $("#main").removeClass('clear');
   $("textarea").val('');
+}
+
+function togglePalette() {
+  if ($("#palette").is(":visible")) {
+    $("#palette").hide();
+    $("#textPalette").html('');
+    hexes_as_text();
+    $("#textPalette").show();
+  } else if ($("#textPalette").is(":visible")) {
+    $("#textPalette").hide();
+    process_text()
+    $("#palette").show();
+ }
 }
