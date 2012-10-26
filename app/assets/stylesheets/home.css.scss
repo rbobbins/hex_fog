@@ -13,8 +13,19 @@ body {
   padding: 15px;
 }
 
+
 #footer {
   padding-bottom: 20px;
+}
+
+.row-nomargin {
+  margin: 0;
+  padding: 0;
+}
+ul, li {
+  list-style: none;
+  margin-left: 0px;
+  padding: 0;
 }
 canvas {
   float: left;

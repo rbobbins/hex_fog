@@ -27,7 +27,7 @@ function display_hexes(hexes) {
     var divId = "wrapper_" + (hexes[i].substring(1));
     newDiv = document.createElement('div');
     newDiv.setAttribute('id', divId);
-    newDiv.setAttribute('class', 'row');
+    newDiv.setAttribute('class', 'row row-nomargin');
     $("#palette").append(newDiv);
 
     //create canvas
@@ -44,10 +44,25 @@ function display_hexes(hexes) {
   }
 }
 
+function hexes_as_text(hexs) {
+  var list = "<ul>"
+  for (var i=0; i< hexes.length ; i++) {
+    var name = ".color" + i;
+    var str = '<li>' + name + " { color: " + hexes[i] + " } </li>";
+    list = list + str;
+  }
+  list = list + "</ul>"
+    
+  $("#palette").append("<br /><br /><p><strong>Now, you can copy and paste the hex codes into your stylesheet</strong></p>");  
+  $("#palette").append(list);  
+
+}
+
 function process_text() {
   $("#palette").html('');
   hexes = parse_hexes();
   display_hexes(hexes);
+  hexes_as_text(hexes);
 
   $("#main").addClass('clear');
 }
